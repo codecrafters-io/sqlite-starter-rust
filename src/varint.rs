@@ -30,10 +30,9 @@ fn usable_value(usable_size: u8, byte: u8) -> u8 {
 fn read_usable_bytes(stream: &[u8]) -> Vec<u8> {
     let mut usable_bytes = vec![];
 
-    for i in 0..9 {
-        let byte = stream[i];
-        usable_bytes.push(byte);
-        if starts_with_zero(byte) {
+    for byte in stream.iter().take(9) {
+        usable_bytes.push(*byte);
+        if starts_with_zero(*byte) {
             break;
         }
     }
