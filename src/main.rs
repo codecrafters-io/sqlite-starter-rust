@@ -31,8 +31,7 @@ fn main() -> Result<()> {
             let cell_pointers = database[108..]
                 .chunks_exact(2)
                 .take(page_header.number_of_cells.into())
-                .map(|bytes| u16::from_be_bytes(bytes.try_into().unwrap()))
-                .collect::<Vec<_>>();
+                .map(|bytes| u16::from_be_bytes(bytes.try_into().unwrap()));
 
             // Obtain all records from column 5
             #[allow(unused_variables)]

@@ -31,10 +31,11 @@ impl Schema {
 /// parses variable size unsigned integer encoded as bytes to number.
 fn parse_number(bytes: &[u8]) -> usize {
     let mut result: usize = 0;
-    let num_bytes = bytes.len();
-    for i in 0..num_bytes {
-        let shift = (num_bytes - i - 1) * 8;
-        result += (bytes[i] as usize) << shift;
+
+    for (i, byte) in bytes.iter().enumerate() {
+        let shift = (bytes.len() - i - 1) * 8;
+        result += (*byte as usize) << shift;
     }
+
     result
 }
